@@ -64,8 +64,10 @@ Este proyecto es una aplicación web para la gestión de listas de tareas, desar
    ```bash
    git clone https://github.com/tu-usuario/tu-repositorio.git
    cd tu-repositorio
-Crea un entorno virtual:
-python -m venv venv
+2. **rea un entorno virtual::**
+   ```bash
+   python -m venv venv
+   
 Activa el entorno virtual:
 En Windows:
 venv\Scripts\activate
