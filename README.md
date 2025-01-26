@@ -1,5 +1,4 @@
 # Backend-Nivelatorio-MISIS
-# README: Gestor de Tareas
 
 ## Descripción
 
