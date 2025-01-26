@@ -1,102 +1,178 @@
-# Backend-Nivelatorio-MISIS
+# Gestión de Tareas - Aplicación Web
 
-## Descripción
-
-Este proyecto tiene como objetivo desarrollar una aplicación web intuitiva y eficiente para gestionar listas de tareas. La aplicación permitirá a los usuarios crear, organizar y rastrear el progreso de sus actividades diarias.
+Este proyecto es una aplicación web para la gestión de listas de tareas, desarrollada como parte de un ejercicio de nivelación para el curso **Desarrollo de Soluciones Cloud**. La aplicación permite a los usuarios crear, organizar y monitorear el progreso de sus tareas diarias.
 
 ---
 
-## Componentes Principales
+## Características Principales
 
-1. **API REST (Flask):**
-   - Implementa la lógica de negocio.
-   - Proporciona endpoints para gestionar usuarios, tareas y categorías.
+### **Autenticación de Usuarios**
+- Registro de nuevos usuarios.
+- Inicio de sesión con JWT (JSON Web Tokens).
 
-2. **Base de Datos (SQL):**
-   - Almacena información de usuarios, tareas y sus estados.
+### **Gestión de Tareas**
+- Crear, actualizar, eliminar y obtener tareas.
+- Organizar tareas en categorías.
+- Asignar estados a las tareas (Sin Empezar, En Progreso, Finalizada).
 
-3. **Interfaz Web:**
-   - Ofrece una experiencia interactiva para los usuarios.
-   - Permite la creación, edición y visualización de tareas.
+### **Gestión de Categorías**
+- Crear, eliminar y obtener categorías.
 
----
+### **Base de Datos**
+- Almacenamiento estructurado de usuarios, tareas y categorías.
 
-## Funcionalidades
-
-### **Gestín de Usuarios:**
-- Creación de cuentas.
-- Inicio y cierre de sesión.
-- Carga de imagen de perfil (con opción por defecto).
-
-### **Gestín de Tareas:**
-- Creación, edición y eliminación de tareas.
-- Organización en categorías predefinidas.
-- Asignación de estados: **Sin Empezar**, **En Progreso**, **Finalizada**.
-- Registro de fechas de creación.
-
-### **Interfaz Intuitiva:**
-- Diseño amigable para una fácil interacción.
-- Visualización clara de tareas y categorías.
+### **Despliegue**
+- La aplicación está empaquetada en un contenedor Docker.
+- Se puede ejecutar en una máquina virtual con Ubuntu.
 
 ---
 
-## Instalación y Ejecución
+## Tecnologías Utilizadas
 
-### **Clonar el repositorio:**
-```bash
-git clone https://github.com/Marcosespa/Nivelatorio-MISIS.git
-```
+### **Backend**
+- Python 3.12
+- Flask (Framework web)
+- Flask-JWT-Extended (Autenticación con JWT)
+- SQLAlchemy (ORM para la base de datos)
+- SQLite (Base de datos)
 
-### **Crear un entorno virtual:**
-```bash
-python -m venv venv
-source venv/bin/activate
-```
+### **Frontend**
+- Tecnología libre (puede ser HTML/CSS/JavaScript o un framework como Vue.js o Angular).
 
-### **Instalar dependencias:**
-```bash
-pip install -r requirements.txt
-```
-
-### **Iniciar la base de datos:**
-```bash
-flask db init
-flask db migrate -m "Reiniciar migraciones"
-flask db upgrade
-```
-
-
-### **Conectarse a la base de datos
-```bash
-psql -h localhost -U postgres -d bdnivelatorio1
-
-```
-
-
-### **Ejecutar la aplicación:**
-```bash
-flask run --host=0.0.0.0 --port=8080
-Ver las Tablas en la Base de Datos Conectada:
-\dt
-```
+### **Despliegue**
+- Docker
+- AWS Academy (Máquina virtual con Ubuntu)
 
 ---
 
 ## Estructura del Proyecto
 
-- **`api/`**: Contiene los archivos de la API Flask.
-- **`models/`**: Define los modelos de la base de datos (usuarios, tareas, categorías).
-- **`static/`**: Almacena archivos estáticos como CSS y JavaScript.
-- **`templates/`**: Contiene las plantillas HTML para la interfaz web.
+/proyecto /app init.py models.py routes.py auth.py config.py run.py requirements.txt Dockerfile README.md
 
 ---
 
-## Contribuciones
+## Configuración del Proyecto
 
-Las contribuciones son bienvenidas. Por favor, abre un **issue** para discutir nuevas características o mejoras antes de realizar cambios importantes. También puedes enviar un **pull request**.
+### **Requisitos Previos**
+- Python 3.12 o superior.
+- Docker (opcional, para empaquetar la aplicación).
+- Postman (para probar los endpoints).
 
----
+### **Instalación**
 
-## Licencia
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/tu-usuario/tu-repositorio.git
+   cd tu-repositorio
+Crea un entorno virtual:
+python -m venv venv
+Activa el entorno virtual:
+En Windows:
+venv\Scripts\activate
+En Linux/Mac:
+source venv/bin/activate
+Instala las dependencias:
+pip install -r requirements.txt
+Configura la base de datos: Ejecuta el siguiente comando para crear las tablas:
+python
+Dentro del intérprete de Python, ejecuta:
+from app import create_app, db
+app = create_app()
+with app.app_context():
+    db.create_all()
+Ejecuta la aplicación:
+python run.py
+La aplicación estará disponible en http://localhost:8080.
+Ejecución con Docker
 
-Este proyecto está licenciado bajo la **MIT License**. Consulta el archivo `LICENSE` para más detalles.
+Construye la imagen Docker:
+docker build -t mi-aplicacion .
+Ejecuta el contenedor:
+docker run -p 8080:8080 mi-aplicacion
+La aplicación estará disponible en http://localhost:8080.
+Endpoints de la API
+
+Autenticación
+Registro de Usuario:
+Método: POST
+URL: /registro
+Body:
+{
+  "nombre_usuario": "usuario1",
+  "contrasena": "password123",
+  "imagen_perfil": "https://ejemplo.com/foto.jpg"
+}
+Inicio de Sesión:
+Método: POST
+URL: /login
+Body:
+{
+  "nombre_usuario": "usuario1",
+  "contrasena": "password123"
+}
+Tareas
+Obtener Tareas de un Usuario:
+Método: GET
+URL: /usuarios/{id}/tareas
+Crear Tarea:
+Método: POST
+URL: /tareas
+Body:
+{
+  "texto_tarea": "Hacer la compra",
+  "fecha_creacion": "2023-10-01",
+  "id_usuario": 1,
+  "id_categoria": 1
+}
+Actualizar Tarea:
+Método: PUT
+URL: /tareas/{id}
+Body:
+{
+  "texto_tarea": "Hacer la compra y pagar las cuentas",
+  "estado": "En progreso"
+}
+Eliminar Tarea:
+Método: DELETE
+URL: /tareas/{id}
+Categorías
+Crear Categoría:
+Método: POST
+URL: /categorias
+Body:
+{
+  "nombre": "Trabajo",
+  "descripcion": "Tareas relacionadas con el trabajo"
+}
+Obtener Todas las Categorías:
+Método: GET
+URL: /categorias
+Eliminar Categoría:
+Método: DELETE
+URL: /categorias/{id}
+Pruebas con Postman
+
+Importa la colección de Postman que se encuentra en la carpeta postman del proyecto.
+Ejecuta los endpoints en el siguiente orden:
+Registro de usuario.
+Inicio de sesión.
+Crear tarea.
+Obtener tareas.
+Actualizar tarea.
+Eliminar tarea.
+Crear categoría.
+Obtener categorías.
+Eliminar categoría.
+Despliegue en AWS Academy
+
+Accede al laboratorio de AWS Academy.
+Aprovisiona una máquina virtual con Ubuntu.
+Copia los archivos del proyecto a la máquina virtual usando scp:
+scp -r /ruta/del/proyecto usuario@ip_maquina:/ruta/destino
+Conéctate a la máquina virtual por SSH:
+ssh usuario@ip_maquina
+Ejecuta la aplicación en la máquina virtual:
+docker build -t mi-aplicacion .
+docker run -p 8080:8080 mi-aplicacion
+Accede a la aplicación desde tu navegador usando la IP de la máquina virtual:
+http://ip_maquina:8080
