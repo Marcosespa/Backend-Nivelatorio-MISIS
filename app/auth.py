@@ -36,5 +36,4 @@ def login():
 @jwt_required()
 def logout():
     jti = get_jwt()['jti']  # Identificador único del token
-    # Aquí podrías almacenar el jti en una lista negra (por ejemplo, en una base de datos)
     return jsonify({"mensaje": "Sesión cerrada"}), 200

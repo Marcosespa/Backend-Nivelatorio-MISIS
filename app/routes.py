@@ -24,7 +24,6 @@ def obtener_tareas(usuario_id):
 @jwt_required()
 def crear_tarea():
     data = request.get_json()
-
     # Verificar si se proporcionó un id_categoria
     if 'id_categoria' in data:
         # Verificar si la categoría existe
@@ -41,9 +40,9 @@ def crear_tarea():
     # Crear la tarea
     nueva_tarea = Tarea(
         texto_tarea=data['texto_tarea'],
-        fecha_creacion=fecha_creacion,  # Usar el objeto date
+        fecha_creacion=fecha_creacion,  
         id_usuario=data['id_usuario'],
-        id_categoria=data.get('id_categoria')  # Opcional
+        id_categoria=data.get('id_categoria')  
     )
 
     # Guardar la tarea en la base de datos
