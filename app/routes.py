@@ -19,7 +19,6 @@ def obtener_tareas(usuario_id):
     } for tarea in tareas])
 
 # Endpoint para crear una tarea
-
 @main_routes.route('/tareas', methods=['POST'])
 @jwt_required()
 def crear_tarea():
